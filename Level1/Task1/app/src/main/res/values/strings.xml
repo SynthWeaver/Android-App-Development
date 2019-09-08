@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">HigherLower</string>
+    <string name="title">Guess if the throw is going to be lower, equal or higher</string>
+    <string name="image">Image of a dice</string>
+    <string name="results">Last Throw:</string>
+    <string name="lower">LOWER</string>
+    <string name="equals">EQUALS</string>
+    <string name="higher">HIGHER</string>
+
+    <string name="winner">WINNER</string>
+    <string name="loser">LOSER</string>
+</resources>
