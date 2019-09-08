@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private var lastDiceRoll = 0
-    private var diceRoll = 0
+    private var lastDiceRoll = 5
+    private var diceRoll = 5
 
     private fun generateRandomNumber(): Int{
         val min = 1

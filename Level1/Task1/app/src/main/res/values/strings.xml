@@ -7,6 +7,6 @@
     <string name="equals">EQUALS</string>
     <string name="higher">HIGHER</string>
 
-    <string name="winner">WINNER</string>
-    <string name="loser">LOSER</string>
+    <string name="winner">Correct</string>
+    <string name="loser">Incorrect</string>
 </resources>
