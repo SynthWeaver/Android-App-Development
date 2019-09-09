@@ -2,13 +2,13 @@ package nl.terwijn.reminder
 
 import android.os.Bundle
 import android.view.*
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -34,10 +34,12 @@ class MainActivity : AppCompatActivity() {
         rvReminders.adapter = this.reminderAdapter
 
         rvReminders.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
+        createItemTouchHelper().attachToRecyclerView(rvReminders)
     }
 
     private fun addReminder(){
-        val reminder = etReminder.text.toString();
+        val reminder = etReminder.text.toString()
 
         if(reminder.isNotBlank()){
             reminders.add(Reminder(reminder))
@@ -48,7 +50,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun createItemTouchHelper(): ItemTouchHelper{
 
+        val callback = object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT){
+
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                reminders.removeAt(position)
+                reminderAdapter.notifyDataSetChanged()
+            }
+
+        }
+
+        return ItemTouchHelper(callback)
+    }
 
 
 
