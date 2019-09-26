@@ -2,7 +2,7 @@
     <string name="app_name">Swipe Quiz</string>
     <string name="title">Quiz instructions</string>
     <string name="desc1">Swipe left for true, swipe right for false.</string>
-    <string name="desc2">Click on the question for the answer.</string>
+    <string name="desc2">Click on the RecyclerViewRow for the answer.</string>
     <string name="question1">A \'val\' and a \'var\' are the same.</string>
     <string name="question2">Mobile Application Development grants 12 ECTS.</string>
     <string name="question3">In Kotlin \'when\' replaces the \'switch\' operator in Java.</string>
