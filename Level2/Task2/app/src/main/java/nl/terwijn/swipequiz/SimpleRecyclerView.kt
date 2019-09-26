@@ -4,16 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class SimpleRecyclerView constructor(recyclerView : RecyclerView) {
+class SimpleRecyclerView{
 
     private var recyclerViewRows = arrayListOf<RecyclerViewRow>()
     private val adapter = Adapter(recyclerViewRows)
 
-    //constructor
-    init {
+    public fun setAdapter(recyclerView : RecyclerView){
         recyclerView.adapter = this.adapter
     }
 
@@ -25,6 +23,10 @@ class SimpleRecyclerView constructor(recyclerView : RecyclerView) {
 
     public fun removeRecyclerViewRow(index : Int){
         recyclerViewRows.removeAt(index)
+    }
+
+    public fun getRecyclerRowText(index : Int): String {
+        return recyclerViewRows.get(index).text
     }
 
     public fun getAdapter(): Adapter {
@@ -58,7 +60,7 @@ class SimpleRecyclerView constructor(recyclerView : RecyclerView) {
             private val textView: TextView = itemView.findViewById(android.R.id.text1)
 
             fun bind(RecyclerViewRow: RecyclerViewRow){
-                textView.text = RecyclerViewRow.text;
+                textView.text = RecyclerViewRow.text
             }
         }
     }
