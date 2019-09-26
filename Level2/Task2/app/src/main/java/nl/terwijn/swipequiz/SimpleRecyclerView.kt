@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class MyRecyclerView constructor( recyclerView : RecyclerView) {
+class SimpleRecyclerView constructor(recyclerView : RecyclerView) {
 
     private var recyclerViewRows = arrayListOf<RecyclerViewRow>()
     private val adapter = Adapter(recyclerViewRows)
@@ -26,11 +27,15 @@ class MyRecyclerView constructor( recyclerView : RecyclerView) {
         recyclerViewRows.removeAt(index)
     }
 
-    private data class RecyclerViewRow(
+    public fun getAdapter(): Adapter {
+        return adapter
+    }
+
+    data class RecyclerViewRow(
         var text: String
     )
 
-    private class Adapter(private val RecyclerViewRow: List<RecyclerViewRow>):
+    class Adapter(private val RecyclerViewRow: List<RecyclerViewRow>):
         RecyclerView.Adapter<Adapter.ViewHolder>(){
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
