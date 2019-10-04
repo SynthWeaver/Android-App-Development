@@ -7,29 +7,29 @@
     tools:context=".CreateProfileActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgProfilePicture"
         android:layout_width="102dp"
         android:layout_height="112dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btnOpenGalery"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_account_box_black" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnOpenGalery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#E91E63"
         android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/etFirstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfilePicture"
         tools:text="@string/open_picture_gallery" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/etFirstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -37,13 +37,13 @@
         android:ems="10"
         android:hint="@string/first_name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/etLastName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnOpenGalery" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -52,13 +52,13 @@
         android:ems="10"
         android:hint="@string/last_name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/etDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/etFirstName" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/etDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -69,10 +69,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/etLastName" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnConfirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
