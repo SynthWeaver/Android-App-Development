@@ -11,8 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".CreateProfileActivity"></activity>
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".CreateProfileActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashScreenTheme">
