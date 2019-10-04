@@ -7,8 +7,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_profile.*
 
-const val GALLERY_REQUEST_CODE = 100
-
 class CreateProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +33,7 @@ class CreateProfileActivity : AppCompatActivity() {
         )
         val profileActivityIntent = Intent(this,
             ProfileActivity::class.java)
-        profileActivityIntent.putExtra(ProfileActivity.PROFILE_EXTRA,
-            profile)
+        profileActivityIntent.putExtra(ProfileActivity.PROFILE_EXTRA, profile)
         startActivity(profileActivityIntent)
     }
 
@@ -47,7 +44,7 @@ class CreateProfileActivity : AppCompatActivity() {
         // Sets the type as image/*. This ensures only components of type image are selected
         galleryIntent.type = "image/*"
         // Start the activity using the gallery intent
-        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
+        startActivityForResult(galleryIntent, Companion.GALLERY_REQUEST_CODE)
     }
 
     private var profileImageUri: Uri? = null
@@ -55,11 +52,15 @@ class CreateProfileActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                GALLERY_REQUEST_CODE -> {
+                Companion.GALLERY_REQUEST_CODE -> {
                     profileImageUri = data?.data
                     imgProfilePicture.setImageURI(profileImageUri)
                 }
             }
         }
+    }
+
+    companion object {
+        const val GALLERY_REQUEST_CODE = 100
     }
 }

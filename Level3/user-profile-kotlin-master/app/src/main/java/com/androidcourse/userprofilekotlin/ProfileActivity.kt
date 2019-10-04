@@ -5,7 +5,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_profile.*
 
-const val PROFILE_EXTRA = "PROFILE_EXTRA"
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -19,7 +18,7 @@ class ProfileActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "This is your profile!"
 
-        val profile = intent.getParcelableExtra<Profile>(PROFILE_EXTRA)
+        val profile = intent.getParcelableExtra<Profile>(Companion.PROFILE_EXTRA)
 
         if (profile != null) {
             tvName.text = getString(R.string.name, profile.firstName,
@@ -38,5 +37,9 @@ class ProfileActivity : AppCompatActivity() {
             }
             else -> return super.onOptionsItemSelected(item)
         }
+    }
+
+    companion object {
+        const val PROFILE_EXTRA = "PROFILE_EXTRA"
     }
 }
