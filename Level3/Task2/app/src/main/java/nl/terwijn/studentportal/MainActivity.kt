@@ -2,15 +2,28 @@ package nl.terwijn.studentportal
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.sites.view.*
 
 const val ADD_STUDENT_PORTAL_REQUEST_CODE = 100
 
 class MainActivity : AppCompatActivity() {
+
+    private val sites = arrayListOf<Site>()
+    private val siteAdapter = SiteAdapter(sites)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         btnAdd.setOnClickListener {
             onAddClick()
         }
+
+        rvSites.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        rvSites.adapter = this.siteAdapter
     }
 
     private fun onAddClick() {
@@ -37,15 +53,47 @@ class MainActivity : AppCompatActivity() {
             when (requestCode) {
                 ADD_STUDENT_PORTAL_REQUEST_CODE -> {
                     val site = data!!.getParcelableExtra<Site>(EXTRA_SITE)
-                    addSite(site)
+                    sites.add(site)
+                    siteAdapter.notifyDataSetChanged()
                 }
             }
         }
     }
 
-    private fun addSite(site: Site?) {
-        if (site != null) {
-            println(site.name + site.url)
+    public class SiteAdapter(private val sites: List<Site>) :
+        RecyclerView.Adapter<SiteAdapter.ViewHolder>() {
+        lateinit var context: Context
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType:
+        Int): ViewHolder {
+            context = parent.context
+            return ViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.sites, parent, false)
+            )
+        }
+
+        override fun getItemCount(): Int {
+            return sites.size
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int)
+        {
+            holder.bind(sites[position])
+        }
+
+        inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+            fun bind(site : Site) {
+                itemView.btnName.text = site.name
+                itemView.btnName.setOnClickListener {
+                    openUrl(site.url)
+                }
+            }
+        }
+
+        private fun openUrl(url: String) {
+            val builder = CustomTabsIntent.Builder()
+            val customTabsIntent = builder.build()
+            customTabsIntent.launchUrl(context, Uri.parse(url))
         }
     }
 }
