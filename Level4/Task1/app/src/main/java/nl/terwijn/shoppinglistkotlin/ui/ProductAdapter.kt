@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import nl.terwijn.shoppinglistkotlin.Product
+import nl.terwijn.shoppinglistkotlin.model.Product
 
 
 class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -26,13 +26,11 @@ class ProductAdapter(private val products: List<Product>) : RecyclerView.Adapter
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        private val etName: TextView = itemView.findViewById(android.R.id.text1)
-        private val etAmount: TextView = itemView.findViewById(android.R.id.text1)
+        private val tvProduct: TextView = itemView.findViewById(android.R.id.text1)
 
 
         fun bind(product: Product) {
-            etName.text = product.name
-            etAmount.text = product.quantity.toString()
+            tvProduct.text = String.format("%s %s", product.quantity.toString(), product.name)
         }
 
     }

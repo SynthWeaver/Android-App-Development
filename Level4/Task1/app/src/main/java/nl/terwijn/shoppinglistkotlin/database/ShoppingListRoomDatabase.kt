@@ -1,9 +1,10 @@
-package nl.terwijn.shoppinglistkotlin
+package nl.terwijn.shoppinglistkotlin.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import nl.terwijn.shoppinglistkotlin.model.Product
 
 @Database(entities = [Product::class], version = 1, exportSchema = false)
 abstract class ShoppingListRoomDatabase : RoomDatabase() {
@@ -18,7 +19,9 @@ abstract class ShoppingListRoomDatabase : RoomDatabase() {
                     if (shoppingListRoomDatabaseInstance == null) {
                         shoppingListRoomDatabaseInstance = Room.databaseBuilder(
                             context.applicationContext,
-                            ShoppingListRoomDatabase::class.java, DATABASE_NAME)
+                            ShoppingListRoomDatabase::class.java,
+                            DATABASE_NAME
+                        )
                             .build()
                     }
                 }

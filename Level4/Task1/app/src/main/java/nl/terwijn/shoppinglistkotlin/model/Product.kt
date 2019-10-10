@@ -1,4 +1,4 @@
-package nl.terwijn.shoppinglistkotlin
+package nl.terwijn.shoppinglistkotlin.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

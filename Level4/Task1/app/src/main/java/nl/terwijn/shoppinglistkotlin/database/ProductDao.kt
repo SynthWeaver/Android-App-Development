@@ -1,9 +1,10 @@
-package nl.terwijn.shoppinglistkotlin
+package nl.terwijn.shoppinglistkotlin.database
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import nl.terwijn.shoppinglistkotlin.model.Product
 
 @Dao
 interface ProductDao {
