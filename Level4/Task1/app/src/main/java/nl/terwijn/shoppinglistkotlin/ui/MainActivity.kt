@@ -139,4 +139,3 @@ class MainActivity : AppCompatActivity() {
         return ItemTouchHelper(callback)
     }
 }
-
