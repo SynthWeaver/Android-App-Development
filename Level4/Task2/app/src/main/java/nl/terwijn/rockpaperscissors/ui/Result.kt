@@ -1,4 +1,4 @@
-package nl.terwijn.rockpaperscissors
+package nl.terwijn.rockpaperscissors.ui
 
 class Result{
     companion object {

@@ -1,4 +1,4 @@
-package nl.terwijn.rockpaperscissors
+package nl.terwijn.rockpaperscissors.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,12 +6,23 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import nl.terwijn.rockpaperscissors.R
+import nl.terwijn.shoppinglistkotlin.database.ResultRepository
+import nl.terwijn.shoppinglistkotlin.model.ResultData
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var resultRepository: ResultRepository
+    private val mainScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        resultRepository = ResultRepository(this)
 
         loadViews()
     }
@@ -40,7 +51,22 @@ class MainActivity : AppCompatActivity() {
         //show result
         showResults(playerInput, computerInput, result)
 
-        //save result
+        //save
+        addResultData(result)
+    }
+
+    private fun addResultData(result : String) {
+        if (result.isNotBlank()) {
+            mainScope.launch {
+                val resultData = ResultData(
+                    result
+                )
+
+                withContext(Dispatchers.IO) {
+                    resultRepository.insertResult(resultData)
+                }
+            }
+        }
     }
 
     private fun showResults(playerInput: String, computerInput: String, result: String) {
@@ -53,7 +79,9 @@ class MainActivity : AppCompatActivity() {
         when (computerInput) {
             Input.ROCK -> ivComputer.setImageResource(R.drawable.rock)
             Input.PAPER -> ivComputer.setImageResource(R.drawable.paper)
-            Input.SCISSORS -> ivComputer.setImageResource(R.drawable.scissors)
+            Input.SCISSORS -> ivComputer.setImageResource(
+                R.drawable.scissors
+            )
         }
 
         tvResult.text = result

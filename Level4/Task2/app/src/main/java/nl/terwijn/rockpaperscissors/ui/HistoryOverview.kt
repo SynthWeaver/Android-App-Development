@@ -1,9 +1,10 @@
-package nl.terwijn.rockpaperscissors
+package nl.terwijn.rockpaperscissors.ui
 
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import nl.terwijn.rockpaperscissors.R
 
 class HistoryOverview : AppCompatActivity() {
 
