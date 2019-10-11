@@ -96,7 +96,7 @@
         android:text="@string/vs"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/IbScissors"
+        app:layout_constraintBottom_toTopOf="@+id/ibPaper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvResult" />
@@ -132,9 +132,24 @@
         android:background="#388E3C"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/IbScissors"
+        app:layout_constraintEnd_toStartOf="@+id/ibPaper"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/rock" />
+
+    <ImageButton
+        android:id="@+id/ibScissors"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        android:background="#388E3C"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ibPaper"
+        app:srcCompat="@drawable/scissors" />
 
     <ImageButton
         android:id="@+id/ibPaper"
@@ -147,22 +162,7 @@
         android:background="#388E3C"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/IbScissors"
-        app:srcCompat="@drawable/scissors" />
-
-    <ImageButton
-        android:id="@+id/IbScissors"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:adjustViewBounds="true"
-        android:background="#388E3C"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ibPaper"
+        app:layout_constraintEnd_toStartOf="@+id/ibScissors"
         app:layout_constraintStart_toEndOf="@+id/ibRock"
         app:srcCompat="@drawable/paper" />
 </androidx.constraintlayout.widget.ConstraintLayout>
