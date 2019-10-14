@@ -20,6 +20,10 @@ import nl.terwijn.shoppinglistkotlin.model.ResultData
 
 class HistoryOverview : AppCompatActivity() {
 
+    private val results = arrayListOf<ResultData>()
+    private val resultAdapter = ResultAdapter(results)
+    private lateinit var resultRepository: ResultRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history_overview)
@@ -40,14 +44,23 @@ class HistoryOverview : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_delete_history_list -> true
+            R.id.action_delete_history_list -> {
+                deleteAllResults()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private val results = arrayListOf<ResultData>()
-    private val resultAdapter = ResultAdapter(results)
-    private lateinit var resultRepository: ResultRepository
+    private fun deleteAllResults() {
+        CoroutineScope(Dispatchers.Main).launch {
+            withContext(Dispatchers.Main) {
+                resultRepository.deleteAllResults()
+            }
+            results.clear()
+            resultAdapter.notifyDataSetChanged()
+        }
+    }
 
     private fun initViews(){
         rvResults.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
