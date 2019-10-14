@@ -33,6 +33,22 @@ class HistoryOverview : AppCompatActivity() {
         this.initViews()
     }
 
+    private fun initViews(){
+        rvResults.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
+        rvResults.adapter = this.resultAdapter
+
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val reminders = withContext(Dispatchers.Main) {
+                resultRepository.getAllResults()
+            }
+            this@HistoryOverview.results.clear()
+            this@HistoryOverview.results.addAll(reminders)
+
+            resultAdapter.notifyDataSetChanged()
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_history, menu)
@@ -58,22 +74,6 @@ class HistoryOverview : AppCompatActivity() {
                 resultRepository.deleteAllResults()
             }
             results.clear()
-            resultAdapter.notifyDataSetChanged()
-        }
-    }
-
-    private fun initViews(){
-        rvResults.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
-        rvResults.adapter = this.resultAdapter
-
-
-        CoroutineScope(Dispatchers.Main).launch {
-            val reminders = withContext(Dispatchers.IO) {
-                resultRepository.getAllResults()
-            }
-            this@HistoryOverview.results.clear()
-            this@HistoryOverview.results.addAll(reminders)
-
             resultAdapter.notifyDataSetChanged()
         }
     }

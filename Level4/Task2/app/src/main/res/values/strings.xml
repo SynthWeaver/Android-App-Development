@@ -4,10 +4,14 @@
     <string name="welcome">Welcome</string>
     <string name="instructions">Instructions"select rock, paper or scissors to play</string>
     <string name="statistics">Your all time statistics</string>
-    <string name="stats">Win: 0 Draw: 0 Lose: 0</string>
     <string name="win_result">You win!</string>
     <string name="lose_result">Computer wins!</string>
     <string name="vs">V.S.</string>
     <string name="computer">Computer</string>
     <string name="you">You</string>
+
+    <string name="stats">Win: 0 Draw: 0 Lose: 0</string>
+    <string name="win">Win:</string>
+    <string name="draw">Draw:</string>
+    <string name="lose">Lose:</string>
 </resources>

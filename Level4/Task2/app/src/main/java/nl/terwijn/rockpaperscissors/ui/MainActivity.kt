@@ -1,5 +1,6 @@
 package nl.terwijn.rockpaperscissors.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -39,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         ibScissors.setOnClickListener {
             playGame(Input.SCISSORS)
         }
+
+        updateHistory()
     }
 
     private fun playGame(playerInput: String) {
@@ -68,6 +71,8 @@ class MainActivity : AppCompatActivity() {
                 withContext(Dispatchers.IO) {
                     resultRepository.insertResult(resultData)
                 }
+
+                updateHistory()
             }
         }
     }
@@ -90,6 +95,36 @@ class MainActivity : AppCompatActivity() {
         tvResult.text = result
     }
 
+    private fun updateHistory() {
+        CoroutineScope(Dispatchers.Main).launch {
+            var wins = 0
+            var draws = 0
+            var loses = 0
+
+            val reminders = withContext(Dispatchers.Main) {
+                resultRepository.getAllResults()
+            }
+
+            for (reminder in reminders){
+                when {
+                    reminder.result == Result.WIN -> wins++
+                    reminder.result == Result.DRAW -> draws++
+                    else -> loses++
+                }
+            }
+
+            val resultString = String.format("%s %s %s %s %s %s",
+                getString(R.string.win),
+                wins,
+                getString(R.string.draw),
+                draws,
+                getString(R.string.lose),
+                loses
+            )
+
+            tvStats.text = resultString
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -112,6 +147,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun openHistoryActivity() {
         val intent = Intent(this, HistoryOverview::class.java)
-        startActivity(intent)
+        startActivityForResult (intent, 0)
+    }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        updateHistory()
     }
 }
