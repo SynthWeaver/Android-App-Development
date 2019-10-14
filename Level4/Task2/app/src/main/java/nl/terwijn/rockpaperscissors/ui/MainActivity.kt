@@ -52,13 +52,16 @@ class MainActivity : AppCompatActivity() {
         showResults(playerInput, computerInput, result)
 
         //save
-        addResultData(result)
+        addResultData(playerInput, computerInput, result)
     }
 
-    private fun addResultData(result : String) {
+    private fun addResultData(playerInput: String,  computerInput: String, result: String
+    ) {
         if (result.isNotBlank()) {
             mainScope.launch {
                 val resultData = ResultData(
+                    playerInput,
+                    computerInput,
                     result
                 )
 

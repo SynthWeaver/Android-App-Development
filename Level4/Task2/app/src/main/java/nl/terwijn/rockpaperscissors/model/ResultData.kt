@@ -7,6 +7,12 @@ import nl.terwijn.rockpaperscissors.ui.DateTime
 
 @Entity(tableName = "result_table")
 data class ResultData(
+    @ColumnInfo(name = "playerInput")
+    var playerInput: String,
+
+    @ColumnInfo(name = "computerInput")
+    var computerInput: String,
+
     @ColumnInfo(name = "result")
     var result: String
 ){

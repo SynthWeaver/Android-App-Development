@@ -103,6 +103,18 @@ class HistoryOverview : AppCompatActivity() {
             fun bind(resultData : ResultData) {
                 itemView.tvResult.text = resultData.result
                 itemView.tvDate.text = resultData.date
+
+                when {
+                    resultData.playerInput == Input.ROCK -> itemView.ivYou.setImageResource(R.drawable.rock)
+                    resultData.playerInput == Input.PAPER -> itemView.ivYou.setImageResource(R.drawable.paper)
+                    else -> itemView.ivYou.setImageResource(R.drawable.scissors)
+                }
+
+                when {
+                    resultData.computerInput == Input.ROCK -> itemView.ivComputer.setImageResource(R.drawable.rock)
+                    resultData.computerInput == Input.PAPER -> itemView.ivComputer.setImageResource(R.drawable.paper)
+                    else -> itemView.ivComputer.setImageResource(R.drawable.scissors)
+                }
             }
         }
     }
