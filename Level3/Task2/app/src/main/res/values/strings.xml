@@ -4,4 +4,7 @@
 
     <string name="url">http://</string>
     <string name="add_portal">ADD PORTAL</string>
+
+    <string name="title_name">Title</string>
+    <string name="url_name">Url</string>
 </resources>
