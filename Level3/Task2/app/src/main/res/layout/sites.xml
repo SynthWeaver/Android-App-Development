@@ -8,7 +8,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="#388E3C"
+        android:backgroundTint="#00574B"
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
         android:textColor="#FFFFFF" />
 
 </LinearLayout>
