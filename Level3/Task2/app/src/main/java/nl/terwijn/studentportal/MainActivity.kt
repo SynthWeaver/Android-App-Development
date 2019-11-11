@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
         inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             fun bind(site : Site) {
-                itemView.btnName.text = site.name
+                itemView.btnName.text = String.format("%s\n%s", site.name, site.url)
                 itemView.btnName.setOnClickListener {
                     openUrl(site.url)
                 }

@@ -67,6 +67,7 @@
         android:layout_marginBottom="8dp"
         android:backgroundTint="#045C07"
         android:text="@string/add_portal"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
