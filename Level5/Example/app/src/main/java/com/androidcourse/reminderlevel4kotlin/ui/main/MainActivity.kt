@@ -1,37 +1,37 @@
 package com.androidcourse.reminderlevel4kotlin.ui.main
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidcourse.reminderlevel4kotlin.R
-import com.androidcourse.reminderlevel4kotlin.database.ReminderRepository
+import com.androidcourse.reminderlevel4kotlin.model.MainActivityViewModel
 import com.androidcourse.reminderlevel4kotlin.model.Reminder
 import com.androidcourse.reminderlevel4kotlin.ui.addreminder.AddActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
     private val reminders = arrayListOf<Reminder>()
     private val reminderAdapter = ReminderAdapter(reminders)
-    private lateinit var reminderRepository: ReminderRepository
+    private lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         setTitle(R.string.app_name)
-        reminderRepository = ReminderRepository(this)
+
         initViews()
+        initViewModel()
     }
 
     private fun initViews() {
@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         rvReminders.adapter = reminderAdapter
         rvReminders.addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
         createItemTouchHelper().attachToRecyclerView(rvReminders)
-        getRemindersFromDatabase()
 
         // Clicking floating action button will call startAddActivity.
         fab.setOnClickListener {
@@ -50,15 +49,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getRemindersFromDatabase() {
-        CoroutineScope(Dispatchers.Main).launch {
-            val reminders = withContext(Dispatchers.IO) {
-                reminderRepository.getAllReminders()
-            }
+    private fun initViewModel() {
+        viewModel =
+            ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        // Observe reminders from the view model, update the list when the data is changed.
+        viewModel.reminders.observe(this, Observer { reminders ->
             this@MainActivity.reminders.clear()
             this@MainActivity.reminders.addAll(reminders)
             reminderAdapter.notifyDataSetChanged()
-        }
+        })
     }
 
     /**
@@ -86,12 +85,7 @@ class MainActivity : AppCompatActivity() {
                 val position = viewHolder.adapterPosition
                 val reminderToDelete = reminders[position]
 
-                CoroutineScope(Dispatchers.Main).launch {
-                    withContext(Dispatchers.IO) {
-                        reminderRepository.deleteReminder(reminderToDelete)
-                    }
-                    getRemindersFromDatabase()
-                }
+                viewModel.deleteReminder(reminderToDelete)
             }
         }
         return ItemTouchHelper(callback)
@@ -108,18 +102,14 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 ADD_REMINDER_REQUEST_CODE -> {
                     val reminder = data!!.getParcelableExtra<Reminder>(AddActivity.EXTRA_REMINDER)
 
-                    CoroutineScope(Dispatchers.Main).launch {
-                        withContext(Dispatchers.IO) {
-                            reminderRepository.insertReminder(reminder)
-                        }
-                        getRemindersFromDatabase()
-                    }
+                    viewModel.insertReminder(reminder)
 
                 }
             }

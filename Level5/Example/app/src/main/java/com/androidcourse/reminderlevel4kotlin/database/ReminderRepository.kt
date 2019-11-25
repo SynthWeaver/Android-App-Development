@@ -1,10 +1,8 @@
 package com.androidcourse.reminderlevel4kotlin.database
 
 import android.content.Context
-import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import com.androidcourse.reminderlevel4kotlin.model.Reminder
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 
 public class ReminderRepository(context: Context) {
 
@@ -15,7 +13,7 @@ public class ReminderRepository(context: Context) {
         reminderDao = reminderRoomDatabase!!.reminderDao()
     }
 
-    suspend fun getAllReminders(): List<Reminder> {
+    fun getAllReminders(): LiveData<List<Reminder>> {
         return reminderDao.getAllReminders()
     }
 

@@ -1,5 +1,6 @@
 package com.androidcourse.reminderlevel4kotlin.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.androidcourse.reminderlevel4kotlin.model.Reminder
 
@@ -8,7 +9,7 @@ import com.androidcourse.reminderlevel4kotlin.model.Reminder
 interface ReminderDao {
 
     @Query("SELECT * FROM reminderTable")
-    suspend fun getAllReminders(): List<Reminder>
+    fun getAllReminders(): LiveData<List<Reminder>>
 
     @Insert
     fun insertReminder(reminder: Reminder)
