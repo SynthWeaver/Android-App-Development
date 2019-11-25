@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Reminder Level 4 Kotlin</string>
+    <string name="warning_input_field_empty">You must fill in the input field!</string>
+    <string name="give_a_reminder">Give a reminder</string>
+    <string name="title_activity_add">Add Activity</string>
+    <string name="msg_empty_reminder">The reminder cannot be empty</string>
+</resources>
