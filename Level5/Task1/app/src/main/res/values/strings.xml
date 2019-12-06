@@ -3,5 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title">My Personal Notepad</string>
     <string name="update">Last updated: </string>
+    <string name="inputValue">Things I want to do today:\n-Finish homework\n-Sports</string>
+
     <string name="title_activity_edit_nodepad">EditNodepad</string>
 </resources>
