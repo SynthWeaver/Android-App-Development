@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private fun onAddClick() {
         val intent = Intent(this, StudentPortal::class.java)
         startActivityForResult(intent, ADD_STUDENT_PORTAL_REQUEST_CODE)
+        startActivity()
     }
 
     @SuppressLint("MissingSuperCall")
