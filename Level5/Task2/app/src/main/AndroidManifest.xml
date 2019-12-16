@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="nl.terwijn.gamebacklog.AddGame"></activity>
+        <activity android:name="nl.terwijn.gamebacklog.ui.add.AddGame"></activity>
         <activity
-            android:name="nl.terwijn.gamebacklog.MainActivity"
+            android:name="nl.terwijn.gamebacklog.ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
