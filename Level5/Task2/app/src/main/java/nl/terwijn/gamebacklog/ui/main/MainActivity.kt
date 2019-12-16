@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -16,37 +17,50 @@ import kotlinx.android.synthetic.main.games.view.*
 import nl.terwijn.gamebacklog.R
 import nl.terwijn.gamebacklog.model.Game
 import nl.terwijn.gamebacklog.ui.add.AddGame
+import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
 
-    private val sites = arrayListOf<Game>()
-    private val siteAdapter =
-        SiteAdapter(sites)
+    private lateinit var mainActivityViewModel: MainActivityViewModel
+
+    private var games = arrayListOf<Game>()
+    private val gameAdapter = GameAdapter(games)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        init()
+        initViews()
+        initViewModel()
     }
 
-    private fun init(){
+    private fun initViews(){
         btnAdd.setOnClickListener {
-            onAddClick()
+            showAddGame()
         }
 
         rvGames.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
-        rvGames.adapter = this.siteAdapter
+        rvGames.adapter = this.gameAdapter
     }
 
-    private fun onAddClick() {
+    private fun initViewModel() {
+        mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+
+        mainActivityViewModel.games.observe(this, Observer { games ->
+            if (games != null) {
+                this.games = games as ArrayList<Game>
+            }
+        })
+    }
+
+    private fun showAddGame() {
         val intent = Intent(this, AddGame::class.java)
         startActivity(intent)
     }
 
-    public class SiteAdapter(private val games: List<Game>) :
-        RecyclerView.Adapter<SiteAdapter.ViewHolder>() {
+    class GameAdapter(private val games: List<Game>) :
+        RecyclerView.Adapter<GameAdapter.ViewHolder>() {
         lateinit var context: Context
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType:

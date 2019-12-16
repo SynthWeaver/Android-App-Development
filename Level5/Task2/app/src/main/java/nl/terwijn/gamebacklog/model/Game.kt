@@ -8,10 +8,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity
 data class Game(
-    val title: String,
-    val platform: String,
-    val day: String,
-    val month: String,
-    val year: String,
+    var title: String,
+    var platform: String,
+    var day: String,
+    var month: String,
+    var year: String,
     @PrimaryKey var id : Long? = null
-) : Parcelable
+) : Parcelable//todo kan weg

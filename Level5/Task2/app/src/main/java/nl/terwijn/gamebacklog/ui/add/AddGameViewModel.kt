@@ -15,29 +15,40 @@ class AddGameViewModel(application: Application) : AndroidViewModel(application)
     private val gameRepository = GameRepository(application.applicationContext)
     private val mainScope = CoroutineScope(Dispatchers.Main)
 
-    val game = MutableLiveData<Game?>()
-    val error = MutableLiveData<String?>()
-    val success = MutableLiveData<Boolean>()
+    var error = ""
+    var success = false
 
-    fun instertGame() {
-        if (isNoteValid()) {
+    fun insertGame(game:Game) {
+        if (isNoteValid(game)) {
             mainScope.launch {
                 withContext(Dispatchers.IO) {
-                    gameRepository.insertGame(game.value!!)
+                    gameRepository.insertGame(game)
                 }
-                success.value = true
+                success = true
             }
         }
     }
 
-    private fun isNoteValid(): Boolean {
+    private fun isNoteValid(game:Game): Boolean {
         return when {
-            game.value == null -> {
-                error.value = "Note must not be null"
+            game.title.isBlank() -> {
+                error = "Title must not be empty"
                 false
             }
-            game.value!!.title.isBlank() -> {
-                error.value = "Title must not be empty"
+            game.platform.isBlank() -> {
+                error = "Title must not be empty"
+                false
+            }
+            game.day.isBlank() -> {
+                error = "Title must not be empty"
+                false
+            }
+            game.month.isBlank() -> {
+                error = "Title must not be empty"
+                false
+            }
+            game.year.isBlank() -> {
+                error = "Title must not be empty"
                 false
             }
             else -> true

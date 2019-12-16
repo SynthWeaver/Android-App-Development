@@ -3,9 +3,12 @@ package nl.terwijn.gamebacklog.ui.add
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_add_game.*
 import kotlinx.android.synthetic.main.content_add_game.*
 import nl.terwijn.gamebacklog.R
+import nl.terwijn.gamebacklog.model.Game
+import androidx.lifecycle.Observer
 
 class AddGame : AppCompatActivity() {
 
@@ -25,8 +28,8 @@ class AddGame : AppCompatActivity() {
         }
     }
 
-    private fun initViewModel(){
-
+    private fun initViewModel() {
+        addGameViewModel = ViewModelProviders.of(this).get(AddGameViewModel::class.java)
     }
 
     private fun onSaveClick() {
@@ -36,19 +39,16 @@ class AddGame : AppCompatActivity() {
         val month = etMonth.text.toString()
         val year = etYear.text.toString()
 
-        if (title.isNotBlank() && platform.isNotBlank() && day.isNotBlank() && month.isNotBlank() && year.isNotBlank()) {
-//            val site = Game(
-//                title,
-//                platform,
-//                day,
-//                month,
-//                year
-//            )
+        val game = Game(title, platform, day, month, year)
+        addGameViewModel.insertGame(game)
 
-            finish()
-        } else {
-            Toast.makeText(this,"The textfields cannot be empty"
+        if(!addGameViewModel.success){
+            Toast.makeText(this,addGameViewModel.error
                 , Toast.LENGTH_SHORT).show()
+
+            return
         }
+
+        finish()
     }
 }
