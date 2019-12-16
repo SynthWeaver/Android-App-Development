@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="nl.terwijn.notepad">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.androidcourse.notepadkotlin">
 
     <application
         android:allowBackup="true"
@@ -8,13 +9,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".Controllers.EditNodepad"
-            android:label="@string/title_activity_edit_nodepad"
+            android:name=".ui.edit.EditActivity"
+            android:label="@string/title_activity_edit"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Controllers.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
