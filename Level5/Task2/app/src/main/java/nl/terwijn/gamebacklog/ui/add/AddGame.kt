@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_add_game.*
 import kotlinx.android.synthetic.main.content_add_game.*
 import nl.terwijn.gamebacklog.R
-import nl.terwijn.gamebacklog.model.Game
 
 class AddGame : AppCompatActivity() {
 
@@ -38,13 +37,13 @@ class AddGame : AppCompatActivity() {
         val year = etYear.text.toString()
 
         if (title.isNotBlank() && platform.isNotBlank() && day.isNotBlank() && month.isNotBlank() && year.isNotBlank()) {
-            val site = Game(
-                title,
-                platform,
-                day,
-                month,
-                year
-            )
+//            val site = Game(
+//                title,
+//                platform,
+//                day,
+//                month,
+//                year
+//            )
 
             finish()
         } else {

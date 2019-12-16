@@ -9,7 +9,8 @@ import kotlinx.android.parcel.Parcelize
 @Entity
 data class Game(
     val title: String,
-    val platform: String,val day: String,
+    val platform: String,
+    val day: String,
     val month: String,
     val year: String,
     @PrimaryKey var id : Long? = null
