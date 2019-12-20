@@ -18,6 +18,7 @@ import nl.terwijn.gamebacklog.R
 import nl.terwijn.gamebacklog.model.Game
 import nl.terwijn.gamebacklog.ui.add.AddGame
 import androidx.lifecycle.Observer
+import nl.terwijn.gamebacklog.database.GameRepository
 
 class MainActivity : AppCompatActivity() {
 

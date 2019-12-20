@@ -8,11 +8,11 @@ import kotlinx.android.synthetic.main.activity_add_game.*
 import kotlinx.android.synthetic.main.content_add_game.*
 import nl.terwijn.gamebacklog.R
 import nl.terwijn.gamebacklog.model.Game
-import androidx.lifecycle.Observer
+import nl.terwijn.gamebacklog.ui.main.MainActivityViewModel
 
 class AddGame : AppCompatActivity() {
 
-    private lateinit var addGameViewModel: AddGameViewModel
+    private lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +29,7 @@ class AddGame : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        addGameViewModel = ViewModelProviders.of(this).get(AddGameViewModel::class.java)
+        mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
     }
 
     private fun onSaveClick() {
@@ -40,10 +40,11 @@ class AddGame : AppCompatActivity() {
         val year = etYear.text.toString()
 
         val game = Game(title, platform, day, month, year)
-        addGameViewModel.insertGame(game)
 
-        if(!addGameViewModel.success){
-            Toast.makeText(this,addGameViewModel.error
+        mainActivityViewModel.insertGame(game)
+
+        if(!mainActivityViewModel.success){
+            Toast.makeText(this,mainActivityViewModel.error
                 , Toast.LENGTH_SHORT).show()
 
             return
