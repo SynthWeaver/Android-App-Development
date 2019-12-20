@@ -19,6 +19,8 @@ import nl.terwijn.gamebacklog.R
 import nl.terwijn.gamebacklog.model.Game
 import nl.terwijn.gamebacklog.model.MainViewModel
 import nl.terwijn.gamebacklog.ui.add.AddGame
+import nl.terwijn.gamebacklog.ui.views.MarginItemDecoration
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +45,9 @@ class MainActivity : AppCompatActivity() {
 
         rvGames.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         rvGames.adapter = this.gameAdapter
+        rvGames.addItemDecoration(
+            MarginItemDecoration()
+        )
     }
 
     private fun initViewModel() {
@@ -85,7 +90,8 @@ class MainActivity : AppCompatActivity() {
             fun bind(game : Game) {
                 itemView.tvTitle.text = game.title
                 itemView.tvPlatform.text = game.platform
-                itemView.tvReleaseDate.text = String.format("%s %s %s", game.day, game.month, game.year)
+                val release = "Release:"
+                itemView.tvReleaseDate.text = String.format("%s %s %s %s", release, game.day, game.month, game.year)
             }
         }
     }
