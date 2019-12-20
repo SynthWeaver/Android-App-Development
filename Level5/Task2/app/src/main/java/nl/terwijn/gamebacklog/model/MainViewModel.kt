@@ -18,8 +18,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var error = ""
     var success = false
 
-    fun deleteGame() {
-        //todo
+    fun deleteGame(game: Game) {
+        ioScope.launch {
+            gameRepository.deleteGame(game)
+        }
     }
 
     fun deleteAllGames() {
