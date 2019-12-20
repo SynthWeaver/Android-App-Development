@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,13 +17,12 @@ import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.games.view.*
 import nl.terwijn.gamebacklog.R
 import nl.terwijn.gamebacklog.model.Game
+import nl.terwijn.gamebacklog.model.MainViewModel
 import nl.terwijn.gamebacklog.ui.add.AddGame
-import androidx.lifecycle.Observer
-import nl.terwijn.gamebacklog.database.GameRepository
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mainActivityViewModel: MainActivityViewModel
+    private lateinit var mainViewModel: MainViewModel
 
     private var games = arrayListOf<Game>()
     private val gameAdapter = GameAdapter(games)
@@ -46,12 +46,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        mainActivityViewModel.games.observe(this, Observer { games ->
-            if (games != null) {
-                this.games = games as ArrayList<Game>
-            }
+        mainViewModel.games.observe(this, Observer { games ->
+            this@MainActivity.games.clear()
+            this@MainActivity.games.addAll(games)
+            gameAdapter.notifyDataSetChanged()
         })
     }
 

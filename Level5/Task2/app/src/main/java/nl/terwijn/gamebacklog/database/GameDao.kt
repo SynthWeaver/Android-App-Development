@@ -1,7 +1,10 @@
 package nl.terwijn.gamebacklog.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
 import nl.terwijn.gamebacklog.model.Game
 
 
@@ -15,10 +18,4 @@ interface GameDao {
 
     @Delete
     suspend fun deleteGame(game: Game)
-
-    @Update
-    suspend fun updateGame(game: Game)
-
-    @Query("DELETE FROM gameTable")
-    fun nukeTable()
 }

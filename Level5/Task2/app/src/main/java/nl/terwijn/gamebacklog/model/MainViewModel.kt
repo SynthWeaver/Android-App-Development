@@ -1,15 +1,13 @@
-package nl.terwijn.gamebacklog.ui.main
+package nl.terwijn.gamebacklog.model
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import nl.terwijn.gamebacklog.database.GameRepository
-import nl.terwijn.gamebacklog.model.Game
 
-class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val gameRepository = GameRepository(application.applicationContext)
     val games = gameRepository.getAllGames()
@@ -28,8 +26,6 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun insertGame(game: Game) {
-
-        val test = gameRepository.getAllGames().value
 
         success = isNoteValid(game)
 

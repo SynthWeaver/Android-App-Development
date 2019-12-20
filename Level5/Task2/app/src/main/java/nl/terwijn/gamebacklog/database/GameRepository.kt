@@ -21,10 +21,6 @@ class GameRepository(context: Context) {
          gameDao.insertGame(game)
     }
 
-    fun nukeTable() {
-        gameDao.nukeTable()
-    }
-
     suspend fun deleteGame(game: Game) {
         gameDao.deleteGame(game)
     }
