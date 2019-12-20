@@ -9,6 +9,7 @@ import nl.terwijn.gamebacklog.database.GameRepository
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val ioScope = CoroutineScope(Dispatchers.IO)
     private val gameRepository = GameRepository(application.applicationContext)
     val games = gameRepository.getAllGames()
 
@@ -22,7 +23,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun deleteAllGames() {
-        //todo
+        ioScope.launch {
+            gameRepository.deleteAllGames()
+        }
     }
 
     fun insertGame(game: Game) {
@@ -30,7 +33,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         success = isNoteValid(game)
 
         if (success) {
-            CoroutineScope(Dispatchers.IO).launch {
+            ioScope.launch {
                 gameRepository.insertGame(game)
             }
         }
