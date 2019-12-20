@@ -142,7 +142,15 @@ class MainActivity : AppCompatActivity() {
                 itemView.tvTitle.text = game.title
                 itemView.tvPlatform.text = game.platform
                 val release = "Release:"
-                itemView.tvReleaseDate.text = String.format("%s %s %s %s", release, game.day, game.month, game.year)
+
+                val namesOfTheMonth: Array<String> = arrayOf("null",
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November",
+                    "December")
+
+                itemView.tvReleaseDate.text =
+                    String.format("%s %s %s %s", release, game.day,
+                        namesOfTheMonth[game.month], game.year)
             }
         }
     }

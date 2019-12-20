@@ -48,19 +48,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 false
             }
             game.platform.isBlank() -> {
-                error = "Title must not be empty"
+                error = "Platform must not be empty"
                 false
             }
-            game.day.isBlank() -> {
-                error = "Title must not be empty"
+            game.day in 32..0 || game.day == null -> {
+                error = "Day must be between 1 and 31"
                 false
             }
-            game.month.isBlank() -> {
-                error = "Title must not be empty"
+            game.month in 12..0 -> {
+                error = "Month must be between 1 and 12"
                 false
             }
-            game.year.isBlank() -> {
-                error = "Title must not be empty"
+            game.year < 1 -> {
+                error = "Year must be greater than 0"
                 false
             }
             else -> true

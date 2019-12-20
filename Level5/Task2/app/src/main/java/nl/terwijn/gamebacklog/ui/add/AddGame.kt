@@ -33,15 +33,23 @@ class AddGame : AppCompatActivity() {
     }
 
     private fun onSaveClick() {
-        val title = etTitle.text.toString()
-        val platform = etPlatform.text.toString()
-        val day = etDay.text.toString()
-        val month = etMonth.text.toString()
-        val year = etYear.text.toString()
 
-        val game = Game(title, platform, day, month, year)
+        val game : Game
 
-        mainViewModel.insertGame(game)
+        try {
+
+            val title = etTitle.text.toString()
+            val platform = etPlatform.text.toString()
+            val day = etDay.text.toString().toInt()
+            val month = etMonth.text.toString().toInt()
+            val year = etYear.text.toString().toInt()
+
+            game = Game(title, platform,  day, month, year)
+            mainViewModel.insertGame(game)
+        }catch(exception: Exception){
+            mainViewModel.success = false
+            mainViewModel.error = "Something went wrong, please fill in your forms correctly"
+        }
 
         if(!mainViewModel.success){
             Toast.makeText(this,mainViewModel.error

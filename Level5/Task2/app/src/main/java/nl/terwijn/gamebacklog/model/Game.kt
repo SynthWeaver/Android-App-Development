@@ -16,13 +16,13 @@ data class Game(
     var platform: String,
 
     @ColumnInfo(name = "day")
-    var day: String,
+    var day: Int,
 
     @ColumnInfo(name = "month")
-    var month: String,
+    var month: Int,
 
     @ColumnInfo(name = "year")
-    var year: String,
+    var year: Int,
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
