@@ -1,4 +1,4 @@
-package nl.terwijn.movielist
+package nl.terwijn.movielist.views.main
 
 import android.content.Context
 import android.content.Intent
@@ -14,11 +14,15 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_movie.view.*
+import nl.terwijn.movielist.R
+import nl.terwijn.movielist.models.Movie
+import nl.terwijn.movielist.views.movie_details.MovieDetailsActivity
 
 class MainActivity : AppCompatActivity() {
 
     private val movies = arrayListOf<Movie>()
-    private val movieAdapter = MovieAdapter(this, movies)
+    private val movieAdapter =
+        MovieAdapter(this, movies)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +33,46 @@ class MainActivity : AppCompatActivity() {
 
     private fun init(){
         val loremIpsum: String = getString(R.string.lorem_ipsum)
-        movies.add(Movie("test", "2 jan 1995", "url", "url2", 8.1, loremIpsum))
-        movies.add(Movie("test", "2 jan 1995", "url", "url2", 8.1, loremIpsum))
-        movies.add(Movie("test", "2 jan 1995", "url", "url2", 8.1, loremIpsum))
-        movies.add(Movie("test", "2 jan 1995", "url", "url2", 8.1, loremIpsum))
+        movies.add(
+            Movie(
+                "test",
+                "2 jan 1995",
+                "url",
+                "url2",
+                8.1,
+                loremIpsum
+            )
+        )
+        movies.add(
+            Movie(
+                "test",
+                "2 jan 1995",
+                "url",
+                "url2",
+                8.1,
+                loremIpsum
+            )
+        )
+        movies.add(
+            Movie(
+                "test",
+                "2 jan 1995",
+                "url",
+                "url2",
+                8.1,
+                loremIpsum
+            )
+        )
+        movies.add(
+            Movie(
+                "test",
+                "2 jan 1995",
+                "url",
+                "url2",
+                8.1,
+                loremIpsum
+            )
+        )
 
         rvMovies.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         rvMovies.adapter = this.movieAdapter

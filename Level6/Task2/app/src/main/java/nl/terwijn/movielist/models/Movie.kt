@@ -1,4 +1,4 @@
-package nl.terwijn.movielist
+package nl.terwijn.movielist.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
