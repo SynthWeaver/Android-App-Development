@@ -3,7 +3,7 @@ package nl.terwijn.movielist.models
 import com.google.gson.annotations.SerializedName
 
 data class Movie(
-    @SerializedName("popularity") var popularity: Int,
+    @SerializedName("popularity") var popularity: Double,
     @SerializedName("vote_count") var vote_count: Int,
     @SerializedName("video") var video: Boolean,
     @SerializedName("poster_path") var poster_path: String,
@@ -14,7 +14,7 @@ data class Movie(
     @SerializedName("original_title") var original_title: String,
     @SerializedName("genre_ids") var genre_ids: List<Int>,
     @SerializedName("title") var title: String,
-    @SerializedName("vote_average") var vote_average: Int,
+    @SerializedName("vote_average") var vote_average: Double,
     @SerializedName("overview") var overview: String,
     @SerializedName("release_date") var release_date: String
 )
