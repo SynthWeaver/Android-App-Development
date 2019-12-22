@@ -2,23 +2,25 @@ package nl.terwijn.movielist.views.main
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.browser.customtabs.CustomTabsIntent
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_movie.view.*
 import nl.terwijn.movielist.R
+import nl.terwijn.movielist.models.MainViewModel
 import nl.terwijn.movielist.models.Movie
 import nl.terwijn.movielist.views.movie_details.MovieDetailsActivity
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: MainViewModel
 
     private val movies = arrayListOf<Movie>()
     private val movieAdapter =
@@ -28,51 +30,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.init()
+        this.initViewModel()
+        this.initViews()
     }
 
-    private fun init(){
-        val loremIpsum: String = getString(R.string.lorem_ipsum)
-        movies.add(
-            Movie(
-                "test",
-                "2 jan 1995",
-                "url",
-                "url2",
-                8.1,
-                loremIpsum
-            )
-        )
-        movies.add(
-            Movie(
-                "test",
-                "2 jan 1995",
-                "url",
-                "url2",
-                8.1,
-                loremIpsum
-            )
-        )
-        movies.add(
-            Movie(
-                "test",
-                "2 jan 1995",
-                "url",
-                "url2",
-                8.1,
-                loremIpsum
-            )
-        )
-        movies.add(
-            Movie(
-                "test",
-                "2 jan 1995",
-                "url",
-                "url2",
-                8.1,
-                loremIpsum
-            )
-        )
+    private fun initViewModel() {
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+
+        viewModel.getPopularMoviesByYear(2018)
+
+//        // Observe the trivia object.
+//        viewModel.trivia.observe(this, Observer {
+//            tvTrivia.text = it?.text
+//        })
+//
+//        // Observe the error message.
+//        viewModel.error.observe(this, Observer {
+//            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+//        })
+    }
+
+    private fun initViews(){
+        btnSubmit.setOnClickListener {
+            val data = viewModel.movies
+            val dataValus = viewModel.movies.value
+
+            println("yes")
+        }
 
         rvMovies.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         rvMovies.adapter = this.movieAdapter
@@ -107,12 +91,6 @@ class MainActivity : AppCompatActivity() {
                 itemView.tvNumber.text = "0"
                 itemView.ivMovie.setImageResource(R.mipmap.ic_launcher)
             }
-        }
-
-        private fun openUrl(url: String) {
-            val builder = CustomTabsIntent.Builder()
-            val customTabsIntent = builder.build()
-            customTabsIntent.launchUrl(context, Uri.parse(url))
         }
     }
 }

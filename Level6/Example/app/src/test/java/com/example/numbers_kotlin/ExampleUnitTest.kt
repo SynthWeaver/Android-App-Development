@@ -1,4 +1,4 @@
-package com.androidcourse.myapplication
+package com.example.numbers_kotlin
 
 import org.junit.Test
 
