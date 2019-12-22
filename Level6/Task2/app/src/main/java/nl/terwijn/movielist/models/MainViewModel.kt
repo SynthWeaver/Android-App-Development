@@ -15,13 +15,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val error = MutableLiveData<String>()
 
     fun getPopularMoviesByYear(year: Int) {
-        movieRepository.getPopularMovies(year).enqueue(object : Callback<List<Movie>> {
-            override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
-                if (response.isSuccessful) movies.value = response.body()
-                else error.value = "An error occurred: ${response.errorBody().toString()}"
-            }
+        movieRepository.getPopularMovies(year).enqueue(object : Callback<Result> {
+            override fun onResponse(call: Call<Result>, response: Response<Result>) {
+                if (response.isSuccessful){
+                    movies.value = response.body()!!.results
+                }
+                else error.value = "An error occurred: ${response.errorBody().toString()}"            }
 
-            override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
+            override fun onFailure(call: Call<Result>, t: Throwable) {
                 error.value = t.message
             }
         })

@@ -17,14 +17,14 @@ class MovieApi {
                 .build()
 
             // Create the Retrofit instance
-            val musicApi = Retrofit.Builder()
+            val movieApi = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
             // Return the Retrofit NumbersApiService
-            return musicApi.create(MovieApiService::class.java)
+            return movieApi.create(MovieApiService::class.java)
         }
     }
 }
