@@ -78,12 +78,11 @@ class MainActivity : AppCompatActivity() {
             val movieView = inflater.inflate(R.layout.movie, null)
 
             val movie = this.movieList[position]
-            val imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path
+            val imageUrl = "https://image.tmdb.org/t/p/w342" + movie.poster_path
 
-            movieView.tvNumber.text = position.toString()
+            movieView.tvNumber.text = String.format("%s.", position)
 
             val options = RequestOptions()
-                .centerCrop()
                 .placeholder(R.mipmap.ic_launcher_round)
                 .error(R.mipmap.ic_launcher_round)
 
