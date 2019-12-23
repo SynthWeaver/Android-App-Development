@@ -30,12 +30,12 @@ class MovieDetailsActivity : AppCompatActivity() {
             .placeholder(R.mipmap.ic_launcher_round)
             .error(R.mipmap.ic_launcher_round)
 
-        var imageUrl = "https://image.tmdb.org/t/p/w500" + movie.backdrop_path
+        var imageUrl = "https://image.tmdb.org/t/p/w780" + movie.backdrop_path
 
         //set header image
         Glide.with(this).load(imageUrl).apply(options).into(ivSupportImage)
 
-        imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path
+        imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path
 
         //set main image
         Glide.with(this).load(imageUrl).apply(options).into(ivMainImage)

@@ -73,10 +73,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:columnWidth="150dp"
-            android:horizontalSpacing="15dp"
-            android:numColumns="auto_fit"
-            android:verticalSpacing="15dp"/>
+            android:horizontalSpacing="0dp"
+            android:numColumns="2"
+            android:verticalSpacing="0dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
