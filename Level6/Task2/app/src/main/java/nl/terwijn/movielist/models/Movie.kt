@@ -1,7 +1,10 @@
 package nl.terwijn.movielist.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Movie(
     @SerializedName("popularity") var popularity: Double,
     @SerializedName("vote_count") var vote_count: Int,
@@ -17,4 +20,4 @@ data class Movie(
     @SerializedName("vote_average") var vote_average: Double,
     @SerializedName("overview") var overview: String,
     @SerializedName("release_date") var release_date: String
-)
+):Parcelable

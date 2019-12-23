@@ -20,7 +20,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 if (response.isSuccessful){
                     movies.value = response.body()!!.results
                 }
-                else error.value = "An error occurred: ${response.errorBody().toString()}"            }
+                else{
+                    error.value = "An error occurred: ${response.errorBody().toString()}"
+                }
+            }
 
             override fun onFailure(call: Call<Result>, t: Throwable) {
                 error.value = t.message

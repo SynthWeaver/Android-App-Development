@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.movie.view.*
 import nl.terwijn.movielist.R
@@ -70,20 +72,32 @@ class MainActivity : AppCompatActivity() {
 
         @SuppressLint("ViewHolder", "InflateParams")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val movie = this.movieList[position]
+            val inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val movieView = inflater.inflate(R.layout.movie, null)
 
-            var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            var movieView = inflator.inflate(R.layout.movie, null)
+            val movie = this.movieList[position]
+            val imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path
 
             movieView.tvNumber.text = position.toString()
-            movieView.ivMovie.setImageResource(R.mipmap.ic_launcher)
+
+            val options = RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.ic_launcher_round)
+                .error(R.mipmap.ic_launcher_round)
+
+            Glide.with(context).load(imageUrl).apply(options).into(movieView.ivMovie)
 
             movieView.setOnClickListener {
                 val intent = Intent(context, MovieDetailsActivity::class.java)
+                intent.putExtra(MOVIE_ID, movie)
                 context.startActivity(intent)
             }
 
             return movieView
         }
+    }
+
+    companion object{
+        val MOVIE_ID = "MOVIE_ID"
     }
 }
