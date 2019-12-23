@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews(){
         btnSubmit.setOnClickListener {
+            val year = etYear.text.toString().toInt()
+            viewModel.getPopularMoviesByYear(year)
             gv_movies.invalidateViews()
         }
     }

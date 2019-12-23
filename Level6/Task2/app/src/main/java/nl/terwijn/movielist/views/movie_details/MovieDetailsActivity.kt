@@ -47,7 +47,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         tvReleaseDate.text = movie.release_date
 
         //set star rating
-        tvRating.text = movie.popularity.toString()
+        tvRating.text = movie.vote_average.toString()
 
         //set overview
         tvOverview.text = movie.overview
