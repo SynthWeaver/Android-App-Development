@@ -7,7 +7,7 @@
     tools:context=".views.LoginActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiUsername"
+        android:id="@+id/tiEmailHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -18,22 +18,24 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username"
+            android:hint="@string/email"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiPassword"
+        android:id="@+id/tiPasswordHint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/tiUsername"
-        app:layout_constraintStart_toStartOf="@+id/tiUsername"
-        app:layout_constraintTop_toBottomOf="@+id/tiUsername">
+        app:layout_constraintEnd_toEndOf="@+id/tiEmailHint"
+        app:layout_constraintStart_toStartOf="@+id/tiEmailHint"
+        app:layout_constraintTop_toBottomOf="@+id/tiEmailHint">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
@@ -46,6 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/login"
-        app:layout_constraintStart_toStartOf="@+id/tiPassword"
-        app:layout_constraintTop_toBottomOf="@+id/tiPassword" />
+        app:layout_constraintStart_toStartOf="@+id/tiPasswordHint"
+        app:layout_constraintTop_toBottomOf="@+id/tiPasswordHint" />
 </androidx.constraintlayout.widget.ConstraintLayout>

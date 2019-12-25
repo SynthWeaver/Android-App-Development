@@ -7,7 +7,7 @@
     tools:context=".views.AddFeedbackActivity">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiName"
+        android:id="@+id/tiNameHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/name"
@@ -25,15 +26,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tiFeedback"
+        android:id="@+id/tiFeedbackHint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/tiName"
-        app:layout_constraintStart_toStartOf="@+id/tiName"
-        app:layout_constraintTop_toBottomOf="@+id/tiName">
+        app:layout_constraintEnd_toEndOf="@+id/tiNameHint"
+        app:layout_constraintStart_toStartOf="@+id/tiNameHint"
+        app:layout_constraintTop_toBottomOf="@+id/tiNameHint">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFeedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/feedback"
@@ -45,6 +47,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        app:layout_constraintStart_toStartOf="@+id/tiFeedback"
-        app:layout_constraintTop_toBottomOf="@+id/tiFeedback" />
+        app:layout_constraintStart_toStartOf="@+id/tiFeedbackHint"
+        app:layout_constraintTop_toBottomOf="@+id/tiFeedbackHint" />
 </androidx.constraintlayout.widget.ConstraintLayout>

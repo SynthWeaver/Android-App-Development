@@ -4,7 +4,7 @@
     <string name="user">User</string>
     <string name="admin">Admin</string>
 
-    <string name="username">Username</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
 
@@ -13,4 +13,8 @@
     <string name="delete">Delete</string>
 
     <string name="submit">Submit</string>
+
+    <string name="feedbackSuccessful">Feedback has been submitted</string>
+
+    <string name="errorLogin">Email or Password are incorrect, please try again</string>
 </resources>

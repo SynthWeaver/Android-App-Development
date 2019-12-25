@@ -16,5 +16,5 @@ public interface FeedbackApiService  {
     fun readFeedbacks(): Call<List<Feedback>>
 
     @POST("/login")
-    fun login(@Body user: User): Call<List<Feedback>>
+    fun login(@Body user: User): Boolean
 }

@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -15,36 +17,34 @@ import kotlinx.android.synthetic.main.activity_feedback_overview.*
 import kotlinx.android.synthetic.main.feedback.view.*
 import nl.terwijn.individualassignment.R
 import nl.terwijn.individualassignment.models.Feedback
+import nl.terwijn.movielist.models.ViewModel
 
 class FeedbackOverviewActivity : AppCompatActivity() {
 
+    private lateinit var mainViewModel: ViewModel
+
     private val feedbacks = arrayListOf<Feedback>()
-    private val feedbackAdapter =
-        FeedbackAdapter(
-            feedbacks
-        )
+    private val feedbackAdapter = FeedbackAdapter(feedbacks)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feedback_overview)
 
-        init()
+        this.initViewModel()
+        this.initViews()
     }
 
-    private fun init(){
-        feedbacks.add(
-            Feedback(
-                "Tim Terwijn",
-                "Nice app, but there are a lot of things you could still improve!"
-            )
-        )
-        feedbacks.add(
-            Feedback(
-                "Rik Terwijn",
-                "I hate this app, It is so terable"
-            )
-        )
+    private fun initViewModel() {
+        mainViewModel = ViewModelProviders.of(this).get(ViewModel::class.java)
 
+        mainViewModel.feedbacks.observe(this, Observer { games ->
+            this@FeedbackOverviewActivity.feedbacks.clear()
+            this@FeedbackOverviewActivity.feedbacks.addAll(games)
+            feedbackAdapter.notifyDataSetChanged()
+        })
+    }
+
+    private fun initViews(){
         rvFeedbacks.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         rvFeedbacks.adapter = this.feedbackAdapter
     }
