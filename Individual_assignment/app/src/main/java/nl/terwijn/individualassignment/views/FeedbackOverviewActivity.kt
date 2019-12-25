@@ -1,4 +1,4 @@
-package nl.terwijn.individualassignment
+package nl.terwijn.individualassignment.views
 
 import android.content.Context
 import android.net.Uri
@@ -13,11 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_feedback_overview.*
 import kotlinx.android.synthetic.main.feedback.view.*
+import nl.terwijn.individualassignment.R
+import nl.terwijn.individualassignment.models.Feedback
 
 class FeedbackOverviewActivity : AppCompatActivity() {
 
     private val feedbacks = arrayListOf<Feedback>()
-    private val feedbackAdapter = FeedbackAdapter(feedbacks)
+    private val feedbackAdapter =
+        FeedbackAdapter(
+            feedbacks
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +32,18 @@ class FeedbackOverviewActivity : AppCompatActivity() {
     }
 
     private fun init(){
-        feedbacks.add(Feedback("Tim Terwijn", "Nice app, but there are a lot of things you could still improve!"))
-        feedbacks.add(Feedback("Rik Terwijn", "I hate this app, It is so terable"))
+        feedbacks.add(
+            Feedback(
+                "Tim Terwijn",
+                "Nice app, but there are a lot of things you could still improve!"
+            )
+        )
+        feedbacks.add(
+            Feedback(
+                "Rik Terwijn",
+                "I hate this app, It is so terable"
+            )
+        )
 
         rvFeedbacks.layoutManager = StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL)
         rvFeedbacks.adapter = this.feedbackAdapter

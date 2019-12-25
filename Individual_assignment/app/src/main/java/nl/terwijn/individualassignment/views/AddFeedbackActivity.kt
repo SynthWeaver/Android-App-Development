@@ -1,7 +1,8 @@
-package nl.terwijn.individualassignment
+package nl.terwijn.individualassignment.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import nl.terwijn.individualassignment.R
 
 class AddFeedbackActivity : AppCompatActivity() {
 
