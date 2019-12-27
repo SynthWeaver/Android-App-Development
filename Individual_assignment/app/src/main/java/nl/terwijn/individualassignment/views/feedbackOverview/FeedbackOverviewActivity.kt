@@ -1,4 +1,4 @@
-package nl.terwijn.individualassignment.views
+package nl.terwijn.individualassignment.views.feedbackOverview
 
 import android.content.Context
 import android.net.Uri
@@ -17,14 +17,16 @@ import kotlinx.android.synthetic.main.activity_feedback_overview.*
 import kotlinx.android.synthetic.main.feedback.view.*
 import nl.terwijn.individualassignment.R
 import nl.terwijn.individualassignment.models.Feedback
-import nl.terwijn.movielist.models.ViewModel
 
 class FeedbackOverviewActivity : AppCompatActivity() {
 
-    private lateinit var mainViewModel: ViewModel
+    private lateinit var mainFeedbackOverviewViewModel: FeedbackOverviewViewModel
 
     private val feedbacks = arrayListOf<Feedback>()
-    private val feedbackAdapter = FeedbackAdapter(feedbacks)
+    private val feedbackAdapter =
+        FeedbackAdapter(
+            feedbacks
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,9 +37,11 @@ class FeedbackOverviewActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        mainViewModel = ViewModelProviders.of(this).get(ViewModel::class.java)
+        mainFeedbackOverviewViewModel = ViewModelProviders.of(this).get(FeedbackOverviewViewModel::class.java)
 
-        mainViewModel.feedbacks.observe(this, Observer { games ->
+        mainFeedbackOverviewViewModel.readFeedbacks()
+
+        mainFeedbackOverviewViewModel.feedbacks.observe(this, Observer { games ->
             this@FeedbackOverviewActivity.feedbacks.clear()
             this@FeedbackOverviewActivity.feedbacks.addAll(games)
             feedbackAdapter.notifyDataSetChanged()

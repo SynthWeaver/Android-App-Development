@@ -1,17 +1,15 @@
-package nl.terwijn.individualassignment.views
+package nl.terwijn.individualassignment.views.addFeedback
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_add_feedback.*
 import nl.terwijn.individualassignment.R
 import nl.terwijn.individualassignment.models.Feedback
-import nl.terwijn.movielist.models.ViewModel
 
 class AddFeedbackActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ViewModel
+    private lateinit var addFeedbackViewModel: AddFeedbackViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +20,7 @@ class AddFeedbackActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this).get(ViewModel::class.java)
+        addFeedbackViewModel = ViewModelProviders.of(this).get(AddFeedbackViewModel::class.java)
     }
 
     private fun initViews() {
@@ -32,9 +30,7 @@ class AddFeedbackActivity : AppCompatActivity() {
 
             val feedback = Feedback(null, name, feedbackText)
 
-            viewModel.createFeedback(feedback)
-
-            Toast.makeText(this, getString(R.string.feedbackSuccessful), Toast.LENGTH_LONG).show()
+            addFeedbackViewModel.createFeedback(feedback)
         }
     }
 

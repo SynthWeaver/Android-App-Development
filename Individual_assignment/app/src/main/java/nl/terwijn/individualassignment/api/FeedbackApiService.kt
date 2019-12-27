@@ -10,11 +10,11 @@ import retrofit2.http.POST
 public interface FeedbackApiService  {
 
     @POST("/create/feedback")
-    fun createFeedback(@Body feedback: Feedback)
+    fun createFeedback(@Body feedback: Feedback): Call<Void>
 
     @GET("/read/feedbacks")
     fun readFeedbacks(): Call<List<Feedback>>
 
     @POST("/login")
-    fun login(@Body user: User): Boolean
+    fun login(@Body user: User): Call<Boolean>
 }

@@ -14,7 +14,5 @@
 
     <string name="submit">Submit</string>
 
-    <string name="feedbackSuccessful">Feedback has been submitted</string>
-
     <string name="errorLogin">Email or Password are incorrect, please try again</string>
 </resources>

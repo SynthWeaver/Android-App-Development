@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.AddFeedbackActivity"></activity>
-        <activity android:name=".views.FeedbackOverviewActivity" />
-        <activity android:name=".views.LoginActivity" />
-        <activity android:name=".views.MainActivity">
+        <activity android:name=".views.addFeedback.AddFeedbackActivity"></activity>
+        <activity android:name=".views.feedbackOverview.FeedbackOverviewActivity" />
+        <activity android:name=".views.login.LoginActivity" />
+        <activity android:name=".views.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

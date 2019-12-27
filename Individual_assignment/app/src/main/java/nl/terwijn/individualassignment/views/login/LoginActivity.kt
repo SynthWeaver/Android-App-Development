@@ -1,18 +1,15 @@
-package nl.terwijn.individualassignment.views
+package nl.terwijn.individualassignment.views.login
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_login.*
 import nl.terwijn.individualassignment.R
 import nl.terwijn.individualassignment.models.User
-import nl.terwijn.movielist.models.ViewModel
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: ViewModel
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this).get(ViewModel::class.java)
+        loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
     }
 
     private fun initViews() {
@@ -33,16 +30,13 @@ class LoginActivity : AppCompatActivity() {
 
             val inputUser = User(email, password)
 
-            if(viewModel.login(inputUser)){
-                startFeedbackOverview()
-            }else{
-                Toast.makeText(this, getString(R.string.errorLogin), Toast.LENGTH_LONG).show()
-            }
-        }
-    }
+            loginViewModel.login(inputUser)
 
-    private fun startFeedbackOverview(){
-        val intent = Intent(this, FeedbackOverviewActivity::class.java)
-        startActivity(intent)
+//            if(true){//viewModel.login(inputUser)){
+//                startFeedbackOverview()
+//            }else{
+//                Toast.makeText(this, getString(R.string.errorLogin), Toast.LENGTH_LONG).show()
+//            }
+        }
     }
 }

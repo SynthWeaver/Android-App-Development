@@ -1,10 +1,12 @@
-package nl.terwijn.individualassignment.views
+package nl.terwijn.individualassignment.views.main
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import nl.terwijn.individualassignment.R
+import nl.terwijn.individualassignment.views.addFeedback.AddFeedbackActivity
+import nl.terwijn.individualassignment.views.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
