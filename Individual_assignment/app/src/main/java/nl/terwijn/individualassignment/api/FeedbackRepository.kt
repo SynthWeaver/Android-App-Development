@@ -11,5 +11,7 @@ class FeedbackRepository {
 
     fun readFeedbacks() = feedbackApi.readFeedbacks()
 
+    fun deleteFeedback(id: Int) = feedbackApi.deleteFeedback(id)
+
     fun login(user: User) = feedbackApi.login(user)
 }

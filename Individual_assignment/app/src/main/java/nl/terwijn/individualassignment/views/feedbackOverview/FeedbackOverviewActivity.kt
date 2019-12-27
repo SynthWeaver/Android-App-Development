@@ -1,13 +1,11 @@
 package nl.terwijn.individualassignment.views.feedbackOverview
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +23,7 @@ class FeedbackOverviewActivity : AppCompatActivity() {
     private val feedbacks = arrayListOf<Feedback>()
     private val feedbackAdapter =
         FeedbackAdapter(
-            feedbacks
+            feedbacks, this
         )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +51,21 @@ class FeedbackOverviewActivity : AppCompatActivity() {
         rvFeedbacks.adapter = this.feedbackAdapter
     }
 
-    class FeedbackAdapter(private val feedbacks: List<Feedback>) : RecyclerView.Adapter<FeedbackAdapter.ViewHolder>() {
+    public fun deleteFeedback(id: Int){
+        mainFeedbackOverviewViewModel.deleteFeedback(id)
+    }
+
+    class FeedbackAdapter(
+        private val feedbacks: List<Feedback>,
+        private val activity: FeedbackOverviewActivity
+    ) : RecyclerView.Adapter<FeedbackAdapter.ViewHolder>() {
         lateinit var context: Context
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType:
         Int): ViewHolder {
             context = parent.context
+
+
             return ViewHolder(
                 LayoutInflater.from(context).inflate(R.layout.feedback, parent, false)
             )
@@ -77,13 +84,10 @@ class FeedbackOverviewActivity : AppCompatActivity() {
             fun bind(feedback : Feedback) {
                 itemView.tvName.text = feedback.name
                 itemView.tvFeedback.text = feedback.feedback
+                itemView.btnDelete.setOnClickListener{
+                    activity.deleteFeedback(feedback.id!!)
+                }
             }
-        }
-
-        private fun openUrl(url: String) {
-            val builder = CustomTabsIntent.Builder()
-            val customTabsIntent = builder.build()
-            customTabsIntent.launchUrl(context, Uri.parse(url))
         }
     }
 }
