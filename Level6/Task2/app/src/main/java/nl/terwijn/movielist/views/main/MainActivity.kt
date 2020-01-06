@@ -36,15 +36,11 @@ class MainActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        viewModel.getPopularMoviesByYear(2018)
-
-        // Observe the trivia object.
         viewModel.movies.observe(this, Observer {
             val adapter = MovieAdapter(this, it)
             this.gv_movies.adapter = adapter
         })
 
-        // Observe the error message.
         viewModel.error.observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         })
@@ -80,7 +76,7 @@ class MainActivity : AppCompatActivity() {
             val movie = this.movieList[position]
             val imageUrl = "https://image.tmdb.org/t/p/w342" + movie.poster_path
 
-            movieView.tvNumber.text = String.format("%s.", position)
+            movieView.tvNumber.text = String.format("%s.", position + 1)
 
             val options = RequestOptions()
                 .placeholder(R.mipmap.ic_launcher_round)

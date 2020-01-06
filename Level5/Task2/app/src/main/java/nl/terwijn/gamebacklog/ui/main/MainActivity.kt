@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import kotlinx.android.synthetic.main.games.view.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import nl.terwijn.gamebacklog.R
 import nl.terwijn.gamebacklog.model.Game
 import nl.terwijn.gamebacklog.model.MainViewModel
@@ -29,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private var games = arrayListOf<Game>()
     private val gameAdapter = GameAdapter(games)
-
-    private val mainScope = CoroutineScope(Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

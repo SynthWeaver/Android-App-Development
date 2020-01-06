@@ -21,11 +21,9 @@
         android:id="@+id/tvName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="5dp"
         android:text="Tim Terwijn"
         app:layout_constraintBottom_toBottomOf="@+id/tvNameLabel"
-        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
         app:layout_constraintStart_toEndOf="@+id/tvFeedbackLabel"
         app:layout_constraintTop_toTopOf="@+id/tvNameLabel" />
 
@@ -42,24 +40,19 @@
         android:id="@+id/tvFeedback"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="5dp"
         android:layout_marginBottom="8dp"
         android:text="Leuke app maar kan beter!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvName"
         app:layout_constraintStart_toEndOf="@+id/tvFeedbackLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintTop_toTopOf="@+id/tvFeedbackLabel" />
 
     <Button
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/delete"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

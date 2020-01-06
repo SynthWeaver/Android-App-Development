@@ -31,12 +31,6 @@ class LoginActivity : AppCompatActivity() {
             val inputUser = User(email, password)
 
             loginViewModel.login(inputUser)
-
-//            if(true){//viewModel.login(inputUser)){
-//                startFeedbackOverview()
-//            }else{
-//                Toast.makeText(this, getString(R.string.errorLogin), Toast.LENGTH_LONG).show()
-//            }
         }
     }
 }

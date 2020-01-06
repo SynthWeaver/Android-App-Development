@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class FeedbackApi {
     companion object {
         // The base url off the api.
-        private const val baseUrl = "http://afe53c12.ngrok.io/"
+        private const val baseUrl = "http://cdc38e6e.ngrok.io/"
 
         fun createApi(): FeedbackApiService {
             // Create an OkHttpClient to be able to make a log of the network traffic

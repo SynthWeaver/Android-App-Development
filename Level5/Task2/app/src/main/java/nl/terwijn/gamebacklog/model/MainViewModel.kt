@@ -13,8 +13,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val gameRepository = GameRepository(application.applicationContext)
     val games = gameRepository.getAllGames()
 
-    private val mainScope = CoroutineScope(Dispatchers.Main)
-
     var error = ""
     var success = false
 
